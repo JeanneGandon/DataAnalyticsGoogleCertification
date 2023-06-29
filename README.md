@@ -44,7 +44,7 @@ Cited: **HIGH** : Public domain <br>
 Other limitations: Unknown demographics of participants, while Bellabeat manufactures products exclusively for women.<p>
 
 ## 3. PROCESS
-**Data used** : Daily Activity, Daily Intensities, Heart Rate, and Sleep. <p>
+**Data used** : Daily Activity, Heart Rate, and Sleep. <p>
 **Why?** : Bellabeat provides users with health data related to their activity, sleep, stress, menstrual cycle, and mindfulness habits. Daily Activity and Sleep are metrics that Bellabeat focuses on, and Stress can be assumed when the heart rate is high. <p>
 
 **Data Import & Cleaning**: <p>
@@ -95,7 +95,9 @@ venn <- venn.diagram(x = list(activity1, sleep1, heartrate1),
   cat.cex = .7, cat.fontface = "bold", cat.default.pos = "outer", cat.fontfamily = "sans")
 ```
 <img src="https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/35869ab1-d1dc-4b27-a46d-ba0656ec2ab0" width=400> <br>
-All users will use daily activity tracking, most will monitor their sleep, and fewer will monitor their heartbeat.
+Based on the analysis of user data, it is evident that a majority of device users actively track their daily activity, with nearly two-thirds of users monitoring their sleep patterns. However, it is worth noting that a smaller proportion of users, approximately one-third, track their heart rate. <br>
+
+Understanding user tracking preferences is vital for tailoring the device's features and functionalities to meet their needs. While daily activity tracking appears to be the most popular metric, there is an opportunity to encourage a larger portion of users to track their sleep and heart rate as well. This can be achieved through targeted messaging, highlighting the benefits of monitoring these metrics and their significant impact on overall health and well-being.
 
 ### Sleep Efficiency
 With access to data on the total time asleep and the total time in bed, I calculated the sleep efficiency factor for each user per day:
@@ -112,7 +114,9 @@ ggplot(sleep, aes(x = Date, y = sleepefficiency, color = Id)) +
   scale_color_discrete(name = "Person")
 ```
 <img src=https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/def303e6-80a7-481b-a6da-8dbfb4620b8a width=400> <br>
-Most users lie around a 0.95 sleep efficiency. There are two major outliers. A change in habit of sleep efficiency or a bad sleep efficiency overall can cause some serious health-related side effects, assuming an increased time in bed will correlate to a decreased time active.
+The analysis of sleep efficiency among users reveals that the majority of individuals have a sleep efficiency of around 0.95. This indicates that they are achieving a high level of efficiency in utilizing their time in bed for quality sleep. However, it is important to note that there are two significant outliers who exhibit notably different sleep efficiency patterns. <br>
+
+Identifying the reasons behind these outliers is crucial, as changes in sleep efficiency or consistently low sleep efficiency can have significant implications for users' health and well-being. Poor sleep quality or disrupted sleep patterns can lead to a range of health-related side effects. It is worth considering that an increased time spent in bed does not necessarily correlate with a decrease in sedentary behavior or an increase in physical activity.
 
 ### Average Heart Rate
 Calculated the average daily heart rate of users:
@@ -132,7 +136,7 @@ ggplot(average_heart_rate, aes(x = Date, y = avg_heart_rate, color = Id)) +
   scale_color_discrete(name = "ID")
 ```
 <img src=https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/df78f2a0-916d-4815-9f55-c98497f95c79 width=400> <br>
-Most users remained at a relatively steady Average Heart Rate, but a few had visible major changes in heart rate. This is something that should be addressed when it occurs.
+Based on the analysis of Average Heart Rate data, the majority of users exhibited a relatively stable Average Heart Rate over time. However, a few users displayed significant fluctuations in their heart rate patterns. It is crucial to address these noticeable changes promptly and take appropriate actions. Identifying the reasons behind such major changes in heart rate is essential to ensure the well-being and health of these users. Factors such as stress, physical exertion, or potential health issues may contribute to these variations.
 
 ### Total Steps and Activity
 Plotted the Total Steps of users compared to the minutes spent in different activity levels (lightly, fairly, very):
@@ -156,7 +160,11 @@ ggplot(data=activity, aes(x=VeryActiveMinutes, y=TotalSteps))+geom_jitter(alpha=
 <img src=https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/916914f2-b334-4162-8706-20f1983e3623 width=400> <br>
 <img src=https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/2cf41913-6ae0-4918-99d1-3627130ede48 width=400> <br>
 <img src=https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/6b0a0e18-ca75-472a-88fd-499b5f464c32 width=400> <br>
-These graphs show that lightly active minutes are the most correlated to the total steps. the other two graphs plateau, which shows that fairly and very active work is not related to steps but most likely represents some other form of exercise, likely more static.
+Based on the analysis of the provided graphs, we can draw several key observations regarding the relationship between different activity levels and total steps:
+
+1. Correlation of Lightly Active Minutes with Total Steps: The data indicates a strong positive correlation between lightly active minutes and the total number of steps. As the number of lightly active minutes increases, there is a notable increase in the total steps taken. This suggests that engaging in lighter activities throughout the day, such as walking or gentle movements, contributes significantly to the overall step count.
+
+2. Plateauing Relationship for Fairly and Very Active Work: The graphs demonstrate a plateauing pattern for fairly and very active work concerning their relationship with total steps. Despite increased levels of fairly and very active work, the total steps do not exhibit a proportional increase. This finding suggests that these higher intensity activities may not be directly related to step count but rather represent different forms of exercise, potentially more static or concentrated movements.
 
 ## 5. SHARE
 
