@@ -6,7 +6,7 @@ global smart device market. Urška Sršen, cofounder and Chief Creative Officer 
 device fitness data could help unlock new growth opportunities for the company. You have been asked to focus on one of
 Bellabeat’s products and analyze smart device data to gain insight into how consumers are using their smart devices. The
 insights you discover will then help guide marketing strategy for the company. You will present your analysis to the Bellabeat
-executive team along with your high-level recommendations for Bellabeat’s marketing strategy<p>
+executive team along with your high-level recommendations for Bellabeat’s marketing strategy. <p>
 
 **Data Analysis Process:**<p>
 
@@ -94,7 +94,7 @@ venn <- venn.diagram(x = list(activity1, sleep1, heartrate1),
   cex = 1, fontface = "bold", fontfamily = "sans",
   cat.cex = .7, cat.fontface = "bold", cat.default.pos = "outer", cat.fontfamily = "sans")
 ```
-![features_venn](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/35869ab1-d1dc-4b27-a46d-ba0656ec2ab0)
+![features_venn](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/35869ab1-d1dc-4b27-a46d-ba0656ec2ab0) <br>
 All users will use daily activity tracking, most will monitor their sleep, and fewer will monitor their heartbeat.
 
 ### Sleep Efficiency
@@ -111,12 +111,28 @@ ggplot(sleep, aes(x = Date, y = sleepefficiency, color = Id)) +
   ggtitle("Sleep Efficiency Over Time") +
   scale_color_discrete(name = "Person")
 ```
-![Screen Shot 2023-06-29 at 2 43 23 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/def303e6-80a7-481b-a6da-8dbfb4620b8a)
+![Screen Shot 2023-06-29 at 2 43 23 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/def303e6-80a7-481b-a6da-8dbfb4620b8a) <br>
 Most users lie around a 0.95 sleep efficiency. There are two major outliers. A change in habit of sleep efficiency or a bad sleep efficiency overall can cause some serious health-related side effects, assuming an increased time in bed will correlate to a decreased time active.
 
 ### Average Heart Rate
-![Screen Shot 2023-06-29 at 2 41 12 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/df78f2a0-916d-4815-9f55-c98497f95c79)
-
+Calculated the average daily heart rate of users:
+```
+heartrate$DateTime <- as.POSIXct(heartrate$DateTime)
+average_heart_rate <- heartrate %>%
+  group_by(Id, Date) %>%
+  summarise(avg_heart_rate = mean(Value))
+```
+Ploted it over time for each user: 
+```
+average_heart_rate$Date <- as.Date(average_heart_rate$Date)
+ggplot(average_heart_rate, aes(x = Date, y = avg_heart_rate, color = Id)) +
+  geom_line() +
+  labs(x = "Date", y = "Average Heart Rate") +
+  ggtitle("Average Heart Rate per Date for Each ID") +
+  scale_color_discrete(name = "ID")
+```
+![Screen Shot 2023-06-29 at 2 41 12 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/df78f2a0-916d-4815-9f55-c98497f95c79) <br>
+Most users remained at a relatively steady Average Heart Rate, but a few had visible major changes in heart rate. This is something that should be 
 
 ## 5. SHARE
 
