@@ -18,30 +18,30 @@ executive team along with your high-level recommendations for Bellabeat’s mark
 ### [Act](#6-act)
 
 ## 1. ASK
-**Business Task**: Guide marketing strategy for Bellabeat by analyzing data on consumer usage and habits of other popular smart device. <p>
+**Business Task**: Guide marketing strategy for Bellabeat by analyzing data on consumer usage and habits of another popular smart device. <p>
 **Primary Stakeholders**: <br>
 - Urška Sršen : co-founder and CCO <br>
 - Sando Mur : co-founder and Mathematician <br>
 
 **Secondary Stakeholders**: <br>
-- Marketing Analytics team: responsible for collecting, analyzing, and reporting data to guide marketing stragetegy<p>
+- Marketing Analytics team: responsible for collecting, analyzing, and reporting data to guide marketing strategy <p>
 ## 2. PREPARE
 
 **Data Source**: <br>
 - 30 participants FitBit Fitness Tracker data over 2 months
-- Survey conducted by Amazon Mechnical Turk
-- 18 CSV date file
+- Survey conducted by Amazon Mechanical Turk
+- 18 CSV data file
 - Data available on the second, minute, hour, and day levels
-- Data available for heart rate, burnt calories, activity intensity, MET, steps, and sleep acitivy metrics <br>
+- Data available for heart rate, burnt calories, activity intensity, MET, steps, and sleep activity metrics <br>
 
 **Data Assessment**: <p>
 Reliability: **LOW** : very small sample size of 30 participants <br>
 Originality: **LOW** : third party data <br>
-Comprehensive: **MEDIUM** : comprehensive variety of metrics but most data is recorded from Tuesday to Thursday <br>
-Curent: **LOW** : As of today, June 2023, data is 7 years old <br>
+Comprehensive: **MEDIUM** : a comprehensive variety of metrics but most data is recorded from Tuesday to Thursday <br>
+Current: **LOW** : As of today, June 2023, data is 7 years old <br>
 Cited: **HIGH** : Public domain <br>
 
-Other limitations: Unknown demographics of participants while Bellabeat manufactures products exclusively for women.<p>
+Other limitations: Unknown demographics of participants, while Bellabeat manufactures products exclusively for women.<p>
 
 ## 3. PROCESS
 **Data used** : Daily Activity, Daily Intensities, Heart Rate, and Sleep. <p>
@@ -122,7 +122,7 @@ average_heart_rate <- heartrate %>%
   group_by(Id, Date) %>%
   summarise(avg_heart_rate = mean(Value))
 ```
-Ploted it over time for each user: 
+Plotted it over time for each user: 
 ```
 average_heart_rate$Date <- as.Date(average_heart_rate$Date)
 ggplot(average_heart_rate, aes(x = Date, y = avg_heart_rate, color = Id)) +
@@ -132,7 +132,31 @@ ggplot(average_heart_rate, aes(x = Date, y = avg_heart_rate, color = Id)) +
   scale_color_discrete(name = "ID")
 ```
 ![Screen Shot 2023-06-29 at 2 41 12 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/df78f2a0-916d-4815-9f55-c98497f95c79) <br>
-Most users remained at a relatively steady Average Heart Rate, but a few had visible major changes in heart rate. This is something that should be 
+Most users remained at a relatively steady Average Heart Rate, but a few had visible major changes in heart rate. This is something that should be addressed when it occurs.
+
+### Total Steps and Activity
+Plotted the Total Steps of users compared to the minutes spent in different activity levels (lightly, fairly, very):
+```
+ggplot(data=activity, aes(x=LightlyActiveMinutes, y=TotalSteps))+geom_jitter(alpha=.5)+
+    geom_rug(position="jitter", linewidth=.08)+
+    geom_smooth(size =.6)+
+    labs(title= "Total Steps vs. Lightly Active minutes")+
+    theme_minimal()
+ggplot(data=activity, aes(x=FairlyActiveMinutes, y=TotalSteps))+geom_jitter(alpha=.5)+
+    geom_rug(position="jitter", linewidth=.08)+
+    geom_smooth(size =.6)+
+    labs(title= "Total Steps vs. Fairly Active minutes")+
+    theme_minimal()
+ggplot(data=activity, aes(x=VeryActiveMinutes, y=TotalSteps))+geom_jitter(alpha=.5)+
+    geom_rug(position="jitter", linewidth=.08)+
+    geom_smooth(size =.6)+
+    labs(title= "Total Steps vs. Very Active minutes")+
+    theme_minimal()
+```
+![Screen Shot 2023-06-29 at 3 02 37 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/916914f2-b334-4162-8706-20f1983e3623) <br>
+![Screen Shot 2023-06-29 at 3 02 58 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/2cf41913-6ae0-4918-99d1-3627130ede48) <br>
+![Screen Shot 2023-06-29 at 3 03 29 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/6b0a0e18-ca75-472a-88fd-499b5f464c32) <br>
+These graphs show that lightly active minutes are the most correlated to the total steps. the other two graphs plateau, which shows that fairly and very active work is not related to steps but most likely represents some other form of exercise, likely more static.
 
 ## 5. SHARE
 
