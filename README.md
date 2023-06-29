@@ -1,4 +1,4 @@
-**Introduction to the Case Study** <p>
+## **Introduction to the Case Study** <p>
 
 You are a junior data analyst working on the marketing analyst team at Bellabeat, a high-tech manufacturer of health-focused
 products for women. Bellabeat is a successful small company, but they have the potential to become a larger player in the
@@ -8,7 +8,7 @@ Bellabeat’s products and analyze smart device data to gain insight into how co
 insights you discover will then help guide marketing strategy for the company. You will present your analysis to the Bellabeat
 executive team along with your high-level recommendations for Bellabeat’s marketing strategy. <p>
 
-**Data Analysis Process:**<p>
+## **Data Analysis Process:**<p>
 
 ### [Ask](#1-ask)
 ### [Prepare](#2-prepare)
@@ -50,13 +50,13 @@ Other limitations: Unknown demographics of participants, while Bellabeat manufac
 **Data Import & Cleaning**: <p>
 - Imported wanted data
         
-```
+```ruby
 activity <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/dailyActivity_merged.csv")
 heartrate <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/heartrate_seconds_merged.csv")
 sleep <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/sleepDay_merged.csv")
 ```
 - Examine data by checking for NA and duplicates and removing the ones found in the sleep data
-```
+```ruby
 sum(duplicated(activity))
 sum(duplicated(heartrate))
 sum(duplicated(sleep))
@@ -65,7 +65,7 @@ sleep <- sleep %>%
   drop_na()
 ```
 - Clean up data by converting the dates and times to a universal format
-```
+```ruby
 activity <- activity %>%
     rename(Date = ActivityDate) %>% 
     mutate(Date = as.Date(Date, format = "%m/%d/%y"))
@@ -81,7 +81,7 @@ sleep <- sleep %>%
 
 ### User Utilization 
 Produced a Venn diagram showcasing which metrics users are most likely to utilize:
-```
+```ruby
 activity1 <- unique(activity$Id, incomparables = FALSE)
 sleep1 <- unique(sleep$Id, incomparables = FALSE)
 heartrate1 <- unique(heartrate$Id, incomparables = FALSE)
@@ -101,11 +101,11 @@ Understanding user tracking preferences is vital for tailoring the device's feat
 
 ### Sleep Efficiency
 With access to data on the total time asleep and the total time in bed, I calculated the sleep efficiency factor for each user per day:
-```
+```ruby
 sleepefficiency <- sleep$TotalMinutesAsleep/sleep$TotalTimeInBed
 ```
 Was then able to graph the Sleep Efficiency Over Time for each user:
-```
+```ruby
 sleep$Id <- as.factor(sleep$Id)
 ggplot(sleep, aes(x = Date, y = sleepefficiency, color = Id)) +
   geom_line() +
@@ -120,14 +120,14 @@ Identifying the reasons behind these outliers is crucial, as changes in sleep ef
 
 ### Average Heart Rate
 Calculated the average daily heart rate of users:
-```
+```ruby
 heartrate$DateTime <- as.POSIXct(heartrate$DateTime)
 average_heart_rate <- heartrate %>%
   group_by(Id, Date) %>%
   summarise(avg_heart_rate = mean(Value))
 ```
 Plotted it over time for each user: 
-```
+```ruby
 average_heart_rate$Date <- as.Date(average_heart_rate$Date)
 ggplot(average_heart_rate, aes(x = Date, y = avg_heart_rate, color = Id)) +
   geom_line() +
@@ -140,7 +140,7 @@ Based on the analysis of Average Heart Rate data, the majority of users exhibite
 
 ### Total Steps and Activity
 Plotted the Total Steps of users compared to the minutes spent in different activity levels (lightly, fairly, very):
-```
+```ruby
 ggplot(data=activity, aes(x=LightlyActiveMinutes, y=TotalSteps))+geom_jitter(alpha=.5)+
     geom_rug(position="jitter", linewidth=.08)+
     geom_smooth(size =.6)+
