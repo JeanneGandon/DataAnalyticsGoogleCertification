@@ -7,13 +7,13 @@ Bellabeat’s products and analyze smart device data to gain insight into how co
 insights you discover will then help guide marketing strategy for the company. You will present your analysis to the Bellabeat
 executive team along with your high-level recommendations for Bellabeat’s marketing strategy<p>
 **Data Analysis Process**<p>
-Ask <br>
-Prepare <br>
-Process <br>
-Analyze <br>
-Share <br>
-Act <p>
-**ASK** <p>
+### [Ask](#1-ask)
+### [Prepare](#2-prepare)
+### [Process](#3-process)
+### [Analyze](#4-analyze)
+### [Share](#5-share)
+### [Act](#6-act)
+## 1. ASK
 Business Task: Guide marketing strategy for Bellabeat by analyzing data on consumer usage and habits of other popular smart device. <br>
 Primary Stakeholders: <br>
 - Urška Sršen : co-founder and CCO <br>
@@ -21,7 +21,7 @@ Primary Stakeholders: <br>
 
 Secondary Stakeholders: <br>
 - Marketing Analytics team: responsible for collecting, analyzing, and reporting data to guide marketing stragetegy<p>
-**PREPARE** <p>
+## 2. PREPARE
 
 Data Source: <br>
 - 30 participants FitBit Fitness Tracker data over 2 months
@@ -38,7 +38,8 @@ Curent: **LOW** : As of today, June 2023, data is 7 years old <br>
 Cited: **HIGH** : Public domain <br>
 
 Other limitations: Unknown demographics of participants while Bellabeat manufactures products exclusively for women.<p>
-**PROCESS** <p>
+
+## 3. PROCESS
     Data used: Daily Activity, Daily Intensities, Heart Rate, and Sleep. <p>
     Why?: Bellabeat provides users with health data related to their activity, sleep, stress, menstrual cycle, and mindfulness habits. Daily Activity and Sleep are metrics that Bellabeat focuses on, and Stress can be assumed when the heart rate is high with a low intensity. <p>
         Data Import & Cleaning: 
@@ -83,4 +84,11 @@ head(heartrate)
 head(sleep)
 ```
 
-**ANALYZE**
+## 4. ANALYZE
+
+
+## 5. SHARE
+
+
+
+## 6. ACT
