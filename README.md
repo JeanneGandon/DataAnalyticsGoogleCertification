@@ -42,3 +42,45 @@ Other limitations: Unknown demographics of participants while Bellabeat manufact
     Data used: Daily Activity, Daily Intensities, Heart Rate, and Sleep. <p>
     Why?: Bellabeat provides users with health data related to their activity, sleep, stress, menstrual cycle, and mindfulness habits. Daily Activity and Sleep are metrics that Bellabeat focuses on, and Stress can be assumed when the heart rate is high with a low intensity. <p>
         Data Import & Cleaning: 
+        
+```
+activity <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/dailyActivity_merged.csv")
+intensities <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/minuteIntensitiesWide_merged.csv")
+heartrate <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/heartrate_seconds_merged.csv")
+sleep <- read.csv("/kaggle/input/fitbit/Fitabase Data 4.12.16-5.12.16/sleepDay_merged.csv")
+```
+```
+sum(duplicated(activity))
+sum(duplicated(intensities))
+sum(duplicated(heartrate))
+sum(duplicated(sleep))
+sleep <- sleep %>%
+  distinct() %>%
+  drop_na()
+```
+```
+head(activity)
+head(intensities)
+head(heartrate)
+head(sleep)
+```
+```
+activity <- activity %>%
+    rename(Date = ActivityDate) %>% 
+    mutate(Date = as.Date(Date, format = "%m/%d/%y"))
+intensities <- intensities %>%
+    mutate(time = mdy_hms(ActivityHour)) %>% 
+    separate(col = time, into = c("Date", "Datetime"), sep = " ")
+heartrate <- heartrate %>%
+    mutate(time = mdy_hms(Time)) %>% 
+    separate(col = time, into = c("Date", "Datetime"), sep = " ")
+sleep <- sleep %>%
+    rename(Date = SleepDay) %>% 
+    mutate(Date = as.Date(Date, format= "%m/%d/%Y  %I:%M:%S %p", tz= Sys.timezone()))
+head(activity)
+head(intensities)
+head(heartrate)
+head(sleep)
+```
+
+**ANALYZE**
