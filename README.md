@@ -94,7 +94,7 @@ venn <- venn.diagram(x = list(activity1, sleep1, heartrate1),
   cex = 1, fontface = "bold", fontfamily = "sans",
   cat.cex = .7, cat.fontface = "bold", cat.default.pos = "outer", cat.fontfamily = "sans")
 ```
-![features_venn](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/35869ab1-d1dc-4b27-a46d-ba0656ec2ab0) <br>
+<img src="https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/35869ab1-d1dc-4b27-a46d-ba0656ec2ab0" width=430> <br>
 All users will use daily activity tracking, most will monitor their sleep, and fewer will monitor their heartbeat.
 
 ### Sleep Efficiency
