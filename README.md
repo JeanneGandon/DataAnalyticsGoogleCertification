@@ -185,7 +185,7 @@ By implementing these comprehensive tracking and personalized feedback mechanism
 ## 6. ACT
 
 ### Final Analysis and Recommendations
-Based on our analysis, several key insights have emerged that can guide Bellabeat's team and business in applying the findings to enhance their products and user experience. The following conclusions can be drawn: <br>
+Based on the analysis, several key insights have emerged that can guide Bellabeat's team and business in applying the findings to enhance their products and user experience. The following conclusions can be drawn: <br>
 
 1. Empowering Users with Comprehensive Health Understanding: By urging users to activate all tracking metrics, Bellabeat can provide a more holistic view of their health and well-being. Transparently addressing privacy concerns and emphasizing the benefits of utilizing all available metrics will encourage users to gain a comprehensive understanding of their body changes during the menstrual cycle.
 
