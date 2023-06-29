@@ -80,6 +80,7 @@ sleep <- sleep %>%
 ## 4. ANALYZE
 
 ### User Utilization 
+Produced a Venn diagram showcasing which metrics users are most likely to utilize:
 ```
 activity1 <- unique(activity$Id, incomparables = FALSE)
 sleep1 <- unique(sleep$Id, incomparables = FALSE)
@@ -89,10 +90,33 @@ venn <- venn.diagram(x = list(activity1, sleep1, heartrate1),
   category.names = c("Daily Activity", "Sleep monitor", "Heart monitor"),
   filename = "features_venn.png",
   output=TRUE, imagetype="png",
-  lwd = 2, fill = c("skyblue", "pink1", "orange"), 
+  lwd = 2, fill = c("skyblue", "pink", "orange"), 
   cex = 1, fontface = "bold", fontfamily = "sans",
   cat.cex = .7, cat.fontface = "bold", cat.default.pos = "outer", cat.fontfamily = "sans")
 ```
+![features_venn](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/35869ab1-d1dc-4b27-a46d-ba0656ec2ab0)
+All users will use daily activity tracking, most will monitor their sleep, and fewer will monitor their heartbeat.
+
+### Sleep Efficiency
+With access to data on the total time asleep and the total time in bed, I calculated the sleep efficiency factor for each user per day:
+```
+sleepefficiency <- sleep$TotalMinutesAsleep/sleep$TotalTimeInBed
+```
+Was then able to graph the Sleep Efficiency Over Time for each user:
+```
+sleep$Id <- as.factor(sleep$Id)
+ggplot(sleep, aes(x = Date, y = sleepefficiency, color = Id)) +
+  geom_line() +
+  labs(x = "Date", y = "Sleep Efficiency") +
+  ggtitle("Sleep Efficiency Over Time") +
+  scale_color_discrete(name = "Person")
+```
+![Screen Shot 2023-06-29 at 2 43 23 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/def303e6-80a7-481b-a6da-8dbfb4620b8a)
+Most users lie around a 0.95 sleep efficiency. There are two major outliers. A change in habit of sleep efficiency or a bad sleep efficiency overall can cause some serious health-related side effects, assuming an increased time in bed will correlate to a decreased time active.
+
+### Average Heart Rate
+![Screen Shot 2023-06-29 at 2 41 12 PM](https://github.com/JeanneGandon/DataAnalyticsGoogleCertification/assets/138037134/df78f2a0-916d-4815-9f55-c98497f95c79)
+
 
 ## 5. SHARE
 
